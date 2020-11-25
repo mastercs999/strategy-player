@@ -1,0 +1,25 @@
+﻿@model Portal.ViewModels.Logs.LogContentVM
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>Stack path</th>
+            <th>Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Record record in Model.Records)
+        {
+            <tr class="@record.LogLevel.ToString().ToLowerInvariant()">
+                <td>@record.Timestamp</td>
+                <td>
+                    <abbr title="@record.StackPath">@record.SourceMethod (@record.SourceClass)</abbr>
+                </td>
+                <td>@Html.Raw(String.Join("<br/>", record.Message.Select(x => HttpUtility.HtmlEncode(x))))</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

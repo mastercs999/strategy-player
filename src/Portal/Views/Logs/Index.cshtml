@@ -1,0 +1,35 @@
+﻿@model Portal.ViewModels.Logs.IndexVM
+@{
+    ViewBag.Title = "Logs";
+}
+
+<div class="padded-content">
+    <div class="columns-2">
+        <div id="file-selection">
+            @using (Ajax.BeginForm(MVC.Logs.Filters(), new AjaxOptions() { UpdateTargetId = "log-filters", OnFailure = "utils.failForm", OnBegin = "utils.beginForm", OnComplete = "utils.completeForm" }))
+            {
+                @Html.DropDownListFor(m => m.FilePath, new SelectList(Model.LogFiles.Select(x => new { data = x.FilePath, text = x.Text }), "data", "text", Model.FilePath), new { @class = "custom-select file-select" })
+            }
+        </div>
+
+        <div id="log-filters">
+        </div>
+    </div>
+
+    <div id="log-content">
+    </div>
+</div>
+
+<script>
+    OnInit(function () {
+
+        // Submit form on change
+        $(".file-select").change(function () {
+            $(this).closest("form").submit();
+        });
+
+        // Submit immediately
+        $(".file-select").closest("form").submit();
+    });
+</script>
+

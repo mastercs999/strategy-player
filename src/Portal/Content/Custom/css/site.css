@@ -1,0 +1,178 @@
+﻿/* Main layout */
+.padded-content {
+    margin: 20px;
+}
+
+.columns-2 {
+    display: flex;
+}
+
+.columns-2 > div {
+    margin-right: 20px;
+}
+
+.number-positive {
+    color: #2ebc2e;
+}
+
+.number-negative {
+    color: red;
+}
+
+/* Menu */
+.navbar-toggler {
+    cursor: pointer
+}
+
+/* Waiting animation */
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Checkbox tree */
+.checkbox-tree.custom-tree ul.dynatree-container {
+    border: 0;
+}
+
+.checkbox-tree.custom-tree span.dynatree-selected a {
+    font-style: normal
+}
+
+.checkbox-tree.custom-tree span.dynatree-active a {
+    border: 1px solid white;
+    background: none;
+}
+
+.checkbox-tree.custom-tree a:hover {
+    background: none;
+    border: 1px solid white;
+}
+
+.checkbox-tree.custom-tree a.dynatree-title {
+    line-height: 16px;
+}
+
+.checkbox-tree.custom-tree ul.dynatree-container a:focus,
+.checkbox-tree.custom-tree span.dynatree-focused a {
+    background-color: white;
+    border: 1px solid white;
+}
+
+.checkbox-tree.custom-tree ul.dynatree-container a {
+    outline: none;
+}
+
+.checkbox-tree.custom-tree span.dynatree-checkbox {
+    margin-top: 2px;
+}
+
+.checkbox-tree.custom-tree span.dynatree-checkbox:hover {
+    cursor: pointer;
+}
+
+/* Tables */
+#log-content .table td, #log-content .table th,
+.trades-page .table td, .trades-page .table th {
+    white-space: nowrap;
+    font-size: 0.85rem;
+    padding: 5px;
+}
+
+tfoot td {
+    font-weight: bold;
+}
+
+/* Custom checkboxes */
+.tree-custom-checkbox {
+    line-height: 16px;
+}
+
+.tree-custom-checkbox input[type=checkbox] {
+    display: none;
+}
+
+.tree-custom-checkbox label::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-image: url(../../Dynatree/skin-vista/icons.gif);
+    background-position: 0px -32px;
+    cursor: pointer;
+    margin-right: 6px;
+}
+
+.tree-custom-checkbox label {
+    line-height: 16px;
+    font-size: 10pt;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+
+.tree-custom-checkbox input[type=checkbox]:checked ~ label::before {
+    background-position: -32px -32px;
+}
+
+/* Trades */
+.trades-page h3 {
+    margin-top: 20px
+}
+
+/* Log */
+#log-filters .columns-2 > div:first-child {
+    border-left: 1px solid #e9ecef;
+}
+
+#log-filters .columns-2 > div:nth-child(2) .loglevel-filter {
+    margin-top: 20px;
+}
+
+#log-content .table abbr {
+    text-decoration: none;
+}
+
+#log-content .table td:last-child {
+    white-space: pre;
+}
+
+#log-content .table-striped tbody tr.warning {
+    background-color: #ff9900;
+    color: white;
+}
+
+#log-content .table-striped tbody tr.error {
+    background-color: red;
+    color: white;
+}

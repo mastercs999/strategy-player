@@ -1,0 +1,91 @@
+﻿@model Portal.ViewModels.Logs.FiltersVM
+
+@functions {
+    dynamic ProcessNode(Node<string> n, bool expanded)
+    {
+        return new
+        {
+            title = HttpUtility.HtmlEncode(n.Name),
+            key = HttpUtility.HtmlEncode(n.Value),
+            icon = false,
+            select = false,
+            expand = expanded,
+            children = n.Children.Count == 0 ? null : n.Children.OrderBy(x => x.Name).Select(x => ProcessNode(x, false))
+        };
+    }
+}
+
+<div class="columns-2">
+    <div class="panel-body checkbox-tree custom-tree">
+    </div>
+
+    <div>
+        @using (Ajax.BeginForm(MVC.Logs.LogContent(), new AjaxOptions() { UpdateTargetId = "log-content", OnFailure = "utils.failForm", OnBegin = "utils.beginForm", OnComplete = "utils.completeForm" }, new { @class = "filter-form" }))
+        {
+            @Html.HiddenFor(m => m.FilePath)
+            @Html.HiddenFor(m => m.TreeFilter, new { @class = "tree-filter-input" })
+            @Html.TextBoxFor(m => m.TextFilter, new { @class = "form-control", placeholder = "Contains..." })
+            <div class="loglevel-filter">
+                @foreach (KeyValuePair<string, bool> logLevelToIsChecked in Model.LogLevelToIsChecked.OrderBy(x => x.Key.ToEnum<LogLevel>()))
+                {
+                <div class="tree-custom-checkbox">
+                        @Html.CheckBoxFor(m => Model.LogLevelToIsChecked[logLevelToIsChecked.Key])
+                        @Html.LabelFor(m => Model.LogLevelToIsChecked[logLevelToIsChecked.Key], logLevelToIsChecked.Key)
+                </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    OnInit(function () {
+
+        // Remove content if exists
+        $("#log-content").empty();
+
+        // Init tree
+        $(".checkbox-tree").dynatree({
+            debugLevel: 0,
+            checkbox: true,
+            children: @Html.Raw(JsonConvert.SerializeObject(new Node<string>[] { new Node<string>("All", "All") { Children = Model.Filters } }.Select(x => ProcessNode(x, true)))),
+            selectMode: 3,
+            onSelect: function (select, node) {
+
+                // Get a list of all selected nodes
+                var selectedFilter = []
+                var selectedNodes = node.tree.getSelectedNodes();
+                for (var i in selectedNodes) {
+
+                    var node = selectedNodes[i];
+
+                    // Process only leaves
+                    if (node.childList)
+                        continue;
+
+                    // Find always key of source method and source class
+                    selectedFilter.push({
+                        "sourceClass": node.parent.data.key,
+                        "sourceMethod": node.data.key
+                    });
+                }
+
+                // Save into input
+                $(".tree-filter-input").val(JSON.stringify(selectedFilter));
+
+                // Submit form
+                $("form.filter-form").submit();
+            },
+            onClick: function (node, event) {
+                if ($(event.target).is("a"))
+                    node.toggleSelect();
+            },
+        });
+
+        // Send form on log level select change
+        $(".tree-custom-checkbox input").change(function () {
+            $("form.filter-form").submit();
+        });
+    });
+
+</script>

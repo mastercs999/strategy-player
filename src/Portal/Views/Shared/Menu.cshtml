@@ -1,0 +1,37 @@
+﻿@functions{
+    public string PrintActive(string targetController)
+    {
+        return HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == targetController ? "active" : "";
+    }
+}
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <a class="navbar-brand" href="@Url.Content("~/")">
+        <img src="@Links.Content.Custom.img.favicon_png" width="30" height="30" class="d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link @PrintActive(MVC.Trades.Name)" href="@Url.Action(MVC.Trades.Index())">Trades</a>
+            <a class="nav-item nav-link @PrintActive(MVC.Logs.Name)" href="@Url.Action(MVC.Logs.Index())">Logs</a>
+            @*<div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown link
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>*@
+        </div>
+    </div>
+    <div class="collapse navbar-collapse justify-content-end">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="@Url.Action(MVC.Base.SignOut())">Log out</a>
+        </div>
+    </div>
+</nav>
+

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<GlobalConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CompositeConfig>
+    <Name>Stock strategies</Name>
+    <BaseDirectory>c:\Users\MASTER\Desktop\Stocks</BaseDirectory>
+    <Capital>150000</Capital>
+    <Random />
+    <AccountName></AccountName>
+    <ClientId>0</ClientId>
+    <Port>4002</Port>
+    <ConfidenceMinimum>100</ConfidenceMinimum>
+    <StartBeforeEnd>60</StartBeforeEnd>
+    <MainAttemptBeforeEnd>1</MainAttemptBeforeEnd>
+    <PhoneNumber></PhoneNumber>
+    <Email></Email>
+    <GatewayLogin></GatewayLogin>
+    <GatewayPassword></GatewayPassword>
+    <GatewayVersion>963</GatewayVersion>
+    <LiveTrading>false</LiveTrading>
+  </CompositeConfig>
+  <FbllConfig>
+    <Name>Fbll</Name>
+    <Bundles>5</Bundles>
+    <SmaPeriod>100</SmaPeriod>
+  </FbllConfig>
+  <NinetyConfig>
+    <Name>Ninety</Name>
+    <Bundles>20</Bundles>
+    <LongerSmaPeriod>200</LongerSmaPeriod>
+    <ShorterSmaPeriod>5</ShorterSmaPeriod>
+    <RsiPeriod>2</RsiPeriod>
+  </NinetyConfig>
+  <StratStatConfig>
+    <Name>StratStat</Name>
+  </StratStatConfig>
+  <UltimateConfig>
+    <Name>Ultimate</Name>
+    <Bundles>10</Bundles>
+    <UltimateOscillatorPeriod1>5</UltimateOscillatorPeriod1>
+    <UltimateOscillatorPeriod2>10</UltimateOscillatorPeriod2>
+    <UltimateOscillatorPeriod3>15</UltimateOscillatorPeriod3>
+  </UltimateConfig>
+  <FutureFinderConfig>
+    <Name>FutureFinder</Name>
+    <Bundles>10</Bundles>
+  </FutureFinderConfig>
+</GlobalConfig>

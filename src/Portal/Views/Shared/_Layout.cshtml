@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Portal</title>
+    <link rel="icon" href="@Links.Content.Custom.img.favicon_png" type="image/png">
+    @Styles.Render(Links.Bundles.Styles.styles)
+    @Scripts.Render(Links.Bundles.Scripts.preinit)
+</head>
+<body>
+    @{Html.RenderAction(MVC.Base.Menu());}
+
+    <div class="body-content">
+        @RenderBody()
+    </div>
+
+    <div class="loader" style="display:none">
+    </div>
+
+    @Scripts.Render(Links.Bundles.Scripts.scripts)
+</body>
+</html>
